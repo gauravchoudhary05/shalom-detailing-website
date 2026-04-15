@@ -1,0 +1,31 @@
+{
+    "feature": "3D_Car_Configurator_Phase1",
+    "branchName": "feature/3d-configurator",
+    "userStories": [
+        {
+            "id": "setup-core",
+            "title": "Canvas & State Setup",
+            "description": "Initialize the R3F Canvas and the Zustand store for service selection.",
+            "passes": false,
+            "deps": []
+        },
+        {
+            "id": "model-integration",
+            "title": "Model & Lighting",
+            "description": "Load the car model and apply studio environment mapping for reflections.",
+            "passes": false,
+            "deps": [
+                "setup-core"
+            ]
+        },
+        {
+            "id": "ui-effects",
+            "title": "UI & VFX Integration",
+            "description": "Apply Aurora backgrounds and BorderGlow CTAs using React Bits.",
+            "passes": false,
+            "deps": [
+                "model-integration"
+            ]
+        }
+    ]
+}
