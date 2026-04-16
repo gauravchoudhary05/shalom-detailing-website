@@ -9,6 +9,7 @@ import { PricingOverlay } from '@/components/ui/PricingOverlay';
 import { ContactForm } from '@/components/ui/ContactForm';
 import { HeroSection } from '@/components/ui/HeroSection';
 import { ServicesSection } from '@/components/ui/ServicesSection';
+import { LoadingScreen } from '@/components/ui/LoadingScreen';
 
 // Dynamic import with SSR disabled for WebGL canvas
 const CanvasWrapper = dynamic(
@@ -46,6 +47,7 @@ const CanvasWrapper = dynamic(
 export default function HomePage() {
   return (
     <main id="main-content" className="w-full">
+      <LoadingScreen />
       {/* Section 1: Hero */}
       <section className="relative h-screen w-full">
         {/* 3D Canvas */}
