@@ -1,0 +1,22 @@
+{
+  "name": "projects/8298395414233157219",
+  "projectId": "8298395414233157219",
+  "title": "Shalom Detailing — Luxury Automotive UI",
+  "visibility": "PRIVATE",
+  "projectType": "PROJECT_DESIGN",
+  "origin": "STITCH",
+  "deviceType": "DESKTOP",
+  "designTheme": {
+    "colorMode": "DARK",
+    "font": "SPACE_GROTESK",
+    "roundness": "ROUND_FOUR",
+    "customColor": "#E50000",
+    "headlineFont": "SPACE_GROTESK",
+    "bodyFont": "MANROPE",
+    "labelFont": "MANROPE"
+  },
+  "screens": {},
+  "metadata": {
+    "userRole": "OWNER"
+  }
+}

@@ -75,7 +75,8 @@ GPU Disposal: Manually trigger .dispose() on geometries and materials during com
 7. AI Agentic Integration
 The development workflow is orchestrated by the Stitch MCP and Ralph/GSD loop.
 
-Stitch API: Uses Key AQ. for generating glassmorphism components.
+Stitch API: Uses Key AQ.
+"YOUR_API_KEY_HERE" for generating glassmorphism components.
 
 GSD Protocol: All technical decisions are locked into CONTEXT.md. Task execution is handled via prd.json in the Ralph loop.
 

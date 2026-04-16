@@ -84,6 +84,7 @@ export function Scene() {
         backgroundBlurriness={1}
       />
 
+
       {/* The Car */}
       <CarModel
         position={[0, -0.5, 0]}

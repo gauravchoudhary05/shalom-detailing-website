@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700;800&amp;family=Manrope:wght@200;400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#c00000",
+                    "on-primary-container": "#fff6f4",
+                    "surface-tint": "#ffb4a8",
+                    "on-tertiary-container": "#f8f7ff",
+                    "surface-dim": "#131313",
+                    "outline": "#b08781",
+                    "on-background": "#e2e2e2",
+                    "surface-container-highest": "#353535",
+                    "on-secondary": "#313030",
+                    "error": "#ffb4ab",
+                    "tertiary-container": "#0068f8",
+                    "outline-variant": "#5f3f3a",
+                    "background": "#131313",
+                    "on-secondary-fixed-variant": "#474746",
+                    "surface-container-lowest": "#0e0e0e",
+                    "tertiary-fixed-dim": "#b1c5ff",
+                    "inverse-surface": "#e2e2e2",
+                    "surface-container": "#1f1f1f",
+                    "on-primary-fixed-variant": "#930100",
+                    "inverse-on-surface": "#303030",
+                    "surface-bright": "#393939",
+                    "surface": "#131313",
+                    "secondary-fixed": "#e5e2e1",
+                    "secondary-container": "#474746",
+                    "on-secondary-container": "#b7b5b4",
+                    "secondary": "#c8c6c5",
+                    "surface-variant": "#353535",
+                    "primary-fixed": "#ffdad4",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-primary-fixed": "#410000",
+                    "error-container": "#93000a",
+                    "tertiary-fixed": "#dae2ff",
+                    "primary-fixed-dim": "#ffb4a8",
+                    "tertiary": "#b1c5ff",
+                    "primary-container": "#e50000",
+                    "primary": "#ffb4a8",
+                    "on-primary": "#690000",
+                    "surface-container-high": "#2a2a2a",
+                    "on-surface": "#e2e2e2",
+                    "surface-container-low": "#1b1b1b",
+                    "on-tertiary-fixed-variant": "#0040a0",
+                    "on-error": "#690005",
+                    "on-tertiary-fixed": "#001847",
+                    "on-surface-variant": "#e9bcb5",
+                    "on-tertiary": "#002c72",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>body {
+    background-color: transparent;
+    overflow-x: hidden
+    }
+.cinematic-grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAAwLOIJgI94MHr6xTkqUF8m0Bc_8yZDvTx5uUu_j5BIXdOQAx4D9XENAmIARo4yb94X5gecXdRGPcI2dVu3k0pvlJFG-BlAKjjRUunbsg5Q4JK-F76HPpyuMtNefxvwncMpk1ferK--LyXRofB2RFnFAY0J1WcIztUM796vZP5TzgE4PQnusa-qeojIGAoQtIMvLx8-U6e7DhKFdC5Nx4trjYQVrN054P5JVmmDdGxlbcBfFwX5TqnPt09z1v-JKN4R7VS0canyJA)
+    }
+.glass-morphism {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.05)
+    }
+.ghost-border {
+    border: 1px solid rgba(95, 63, 58, 0.15)
+    }
+.text-glow {
+    text-shadow: 0 0 30px rgba(229, 0, 0, 0.2)
+    }
+.hero-gradient {
+    background: linear-gradient(135deg, #e50000 0%, #930100 100%)
+    }
+.car-bg-placeholder {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #131313
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body text-on-surface selection:bg-primary-container selection:text-white">
+<div class="cinematic-grain"></div>
+<!-- Background Layer (Representing the WebGL Canvas) -->
+<div class="car-bg-placeholder">
+<img class="w-full h-full object-cover opacity-40 mix-blend-luminosity" data-alt="Cinematic low-angle shot of a sleek black luxury supercar in a dark studio with dramatic red rim lighting and atmospheric smoke." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm-N5CpP61MP6XS3NQjavdDQcKIopE9rHCCR5CBj5bZKBUcuze9OjwYOtY16XPcDnOIzohHSZWVyrJk_gJVwuswuxJeUGw_f-H6mFhMTF-YxSgFeUCcNbHUDw2Dab1mvCJPfeiqP4QVI2a9rSTN-pwMhlVdiKG9f_UhCLml9jPWM8xC8JQhsPnN_7HVWrNnum-APdiqWSk84gGeWhK2-qbDH7-pt1OOCi-v-l3gWXZclk5_RXFnxMoSp4EeU7SfFnQFI9pESpo9Mc"/>
+</div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 border-b border-white/5 bg-white/5 dark:bg-black/5 backdrop-blur-xl flex justify-between items-center px-6 h-20 w-full shadow-[0_20px_50px_rgba(229,0,0,0.05)]">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-white/70 hover:bg-white/10 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] p-2">
+                menu
+            </button>
+<span class="font-headline uppercase tracking-widest text-2xl font-bold tracking-tighter text-white dark:text-white">
+                SHALOM
+            </span>
+</div>
+<nav class="hidden md:flex gap-12 items-center">
+<a class="font-headline uppercase tracking-widest text-sm text-red-600 font-black" href="#">Home</a>
+<a class="font-headline uppercase tracking-widest text-sm text-white/70 hover:bg-white/10 transition-all duration-500" href="#">Inventory</a>
+<a class="font-headline uppercase tracking-widest text-sm text-white/70 hover:bg-white/10 transition-all duration-500" href="#">Services</a>
+<a class="font-headline uppercase tracking-widest text-sm text-white/70 hover:bg-white/10 transition-all duration-500" href="#">Studio</a>
+</nav>
+<div class="flex items-center">
+<button class="material-symbols-outlined text-white/70 hover:bg-white/10 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] p-2">
+                account_circle
+            </button>
+</div>
+</header>
+<!-- Main Hero Content -->
+<main class="relative min-h-screen flex flex-col justify-center px-6 md:px-24 pt-20">
+<div class="max-w-6xl w-full">
+<!-- Subtitle Label -->
+<div class="mb-8 overflow-hidden">
+<span class="inline-block font-label text-[0.6875rem] uppercase tracking-[0.3em] text-red-600 font-bold opacity-0 animate-[fadeIn_1s_ease-out_forwards]">
+                    MASTERCLASS DETAILING STUDIO
+                </span>
+</div>
+<!-- Main Headline Cluster -->
+<div class="mb-12 space-y-2">
+<h1 class="font-headline text-[12vw] md:text-[9rem] font-extrabold leading-[0.85] tracking-[-0.05em] text-white uppercase text-glow">
+                    SHALOM
+                </h1>
+<h2 class="font-headline text-[4vw] md:text-[3.5rem] font-light leading-[1] tracking-[-0.02em] text-white/40 uppercase">
+                    AUTOMOTIVE PERFECTION
+                </h2>
+</div>
+<!-- Description & Call to Action Layout -->
+<div class="flex flex-col md:flex-row md:items-end gap-16 md:gap-32">
+<div class="max-w-md">
+<p class="font-body text-lg leading-relaxed text-on-surface opacity-80 border-l-2 border-red-600 pl-8 py-2">
+                        Engineering brilliance meets obsessive craftsmanship. We redefine the molecular surface of your vehicle, employing aerospace-grade tech to achieve a finish that transcends the showroom floor.
+                    </p>
+</div>
+<div class="flex flex-wrap gap-4">
+<!-- Primary Button -->
+<button class="hero-gradient px-12 py-5 text-white font-headline font-bold uppercase tracking-widest rounded-none hover:scale-105 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] shadow-[0_15px_30px_rgba(229,0,0,0.3)]">
+                        RESERVE A BAY
+                    </button>
+<!-- Secondary Button -->
+<button class="ghost-border px-12 py-5 text-white font-headline font-bold uppercase tracking-widest rounded-none hover:bg-white/10 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)]">
+                        EXPLORE SERVICES
+                    </button>
+</div>
+</div>
+</div>
+<!-- Asymmetric Spec Display (Bento/Blueprint Aesthetic) -->
+<div class="absolute bottom-32 right-6 md:right-24 hidden lg:grid grid-cols-1 gap-8">
+<div class="glass-morphism p-8 min-w-[280px]">
+<p class="font-label text-[10px] uppercase tracking-widest text-white/40 mb-2">Technical Standard</p>
+<p class="font-headline text-2xl font-bold text-white">ISO 9001 CERTIFIED</p>
+</div>
+<div class="glass-morphism p-8 min-w-[280px] translate-x-12">
+<p class="font-label text-[10px] uppercase tracking-widest text-white/40 mb-2">Nanotech Shielding</p>
+<p class="font-headline text-2xl font-bold text-red-600">12H HARDNESS</p>
+</div>
+<div class="glass-morphism p-8 min-w-[280px]">
+<p class="font-label text-[10px] uppercase tracking-widest text-white/40 mb-2">Curing Process</p>
+<p class="font-headline text-2xl font-bold text-white">INFRARED HEAT</p>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full h-16 flex justify-around items-center px-4 bg-white/2 dark:bg-black/2 backdrop-blur-2xl z-50 border-t border-white/5">
+<button class="flex flex-col items-center justify-center text-red-600 brightness-125">
+<span class="material-symbols-outlined">home_max</span>
+</button>
+<button class="flex flex-col items-center justify-center text-white/40 hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined">calendar_today</span>
+</button>
+<button class="flex flex-col items-center justify-center text-white/40 hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined">garage</span>
+</button>
+<button class="flex flex-col items-center justify-center text-white/40 hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</nav>
+<!-- Decorative Progress/Detailing Phase Indicator -->
+<div class="fixed left-6 bottom-32 hidden md:flex flex-col items-center gap-4">
+<div class="w-[2px] h-32 bg-surface-container-highest relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1/2 bg-red-600 shadow-[0_0_15px_rgba(229,0,0,1)]"></div>
+</div>
+<span class="font-label text-[10px] uppercase tracking-widest text-white/40 [writing-mode:vertical-lr] rotate-180">Phase 01 / Decontamination</span>
+</div>
+<style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</body></html>

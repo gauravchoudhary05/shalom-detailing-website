@@ -2,6 +2,7 @@
 
 import { useConfigStore } from '@/store/useConfigStore';
 import BorderGlow from './BorderGlow';
+import Image from 'next/image'; // <-- Added Import for Next.js Image
 
 export function Navbar() {
   const togglePricing = useConfigStore((s) => s.togglePricing);
@@ -11,7 +12,18 @@ export function Navbar() {
     <nav id="navbar" className="navbar">
       {/* Brand */}
       <div className="navbar__brand">
-        <div className="navbar__logo" aria-hidden="true">S</div>
+
+        {/* --- REPLACED 'S' LOGO WITH IMAGE --- */}
+        <div className="navbar__logo" aria-hidden="true" style={{ overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent' }}>
+          <Image
+            src="/logo.jpg" // <-- Change this to match your exact file name in the public/ folder! (e.g. /logo.png, /logo.svg)
+            alt="Shalom Logo"
+            width={80} // Adjust width as needed
+            height={80} // Adjust height as needed
+            style={{ objectFit: 'contain' }}
+          />
+        </div>
+
         <div className="navbar__brand-text">
           <span className="navbar__name">Shalom</span>
           <span className="navbar__tagline">Premium Car Detailing</span>
