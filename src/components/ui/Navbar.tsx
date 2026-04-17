@@ -24,7 +24,7 @@ export function Navbar() {
           />
         </div>
 
-        <div className="navbar__brand-text">
+        <div className="navbar__brand-text hidden md:flex">
           <span className="navbar__name">Shalom</span>
           <span className="navbar__tagline">Premium Car Detailing</span>
         </div>
@@ -34,7 +34,7 @@ export function Navbar() {
       <div className="navbar__links">
         <button
           id="nav-pricing-btn"
-          className="navbar__link"
+          className="navbar__link hidden md:block"
           onClick={togglePricing}
         >
           Pricing

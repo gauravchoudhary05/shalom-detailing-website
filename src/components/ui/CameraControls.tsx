@@ -19,7 +19,7 @@ export function CameraControls() {
   const cameraTarget = useConfigStore((s) => s.cameraTarget);
 
   return (
-    <div id="camera-controls" className="camera-controls">
+    <div id="camera-controls" className="camera-controls hidden md:block">
       <h3 className="camera-controls__title">Camera View</h3>
       <div className="camera-controls__grid">
         {VIEW_KEYS.map((key) => {

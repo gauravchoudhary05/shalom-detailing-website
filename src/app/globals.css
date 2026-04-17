@@ -1,7 +1,12 @@
 @import "tailwindcss";
 @source "../components/**/*.{ts,tsx}";
 
-
+@utility hide-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 /* 1. TAILWIND V4 THEME MAPPING & FONTS */
 @theme {
   --font-space: var(--font-space), sans-serif;

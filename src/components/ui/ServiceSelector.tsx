@@ -34,9 +34,9 @@ export function ServiceSelector() {
   const setActiveService = useConfigStore((s) => s.setActiveService);
 
   return (
-    <div className="service-selector">
-      <h2 className="service-selector__title">Surface Finish</h2>
-      <div className="service-selector__grid">
+    <div className="absolute bottom-[108px] md:bottom-10 left-0 md:left-8 w-full md:w-auto z-50 flex flex-col md:overflow-visible">
+      <h2 className="service-selector__title hidden md:block">Surface Finish</h2>
+      <div className="flex flex-row overflow-x-auto px-6 gap-3 snap-x hide-scrollbar md:flex-col md:px-0 w-full md:w-max md:overflow-visible">
         {SERVICES.map((service) => {
           const isActive = activeService === service.id;
           return (
@@ -44,7 +44,7 @@ export function ServiceSelector() {
               key={service.id}
               id={`service-btn-${service.id}`}
               onClick={() => setActiveService(service.id)}
-              className={`service-selector__btn${isActive ? ' service-selector__btn--active' : ''}`}
+              className={`service-selector__btn whitespace-nowrap flex-shrink-0 snap-center md:whitespace-normal md:w-full max-md:!justify-start${isActive ? ' service-selector__btn--active' : ''}`}
             >
               <span
                 className="service-selector__btn-indicator"
@@ -54,7 +54,7 @@ export function ServiceSelector() {
               </span>
               <div className="service-selector__btn-content">
                 <span className="service-selector__btn-title">{service.title}</span>
-                <span className="service-selector__btn-desc">{service.desc}</span>
+                <span className="service-selector__btn-desc hidden md:block">{service.desc}</span>
               </div>
             </button>
           );

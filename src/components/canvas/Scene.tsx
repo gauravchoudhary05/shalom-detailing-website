@@ -112,7 +112,7 @@ export function Scene() {
     const targetZ = Math.pow(scrollRatio, 2.5) * 15;
     
     // Dip slightly downward as it approaches the camera for dramatic framing (adjusted for mobile start pos)
-    const baseTargetY = isMobile ? -1.5 : -1;
+    const baseTargetY = isMobile ? -0.5 : -1;
     const targetY = baseTargetY - (scrollRatio * 1.5);
     
     // Smoothly spring position
@@ -134,7 +134,7 @@ export function Scene() {
       />
 
       {/* The Car Group with Scroll Visibility */}
-      <group ref={carGroupRef} position={[0, isMobile ? -1.5 : -1, 0]} scale={isMobile ? 0.65 : 1}>
+      <group ref={carGroupRef} position={[0, isMobile ? -0.5 : -1, 0]} scale={isMobile ? 0.65 : 1}>
         <CarModel
           position={[0, 0, 0]}
           scale={1}
