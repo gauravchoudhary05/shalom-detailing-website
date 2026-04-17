@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { Environment, ContactShadows, Stars, OrbitControls } from '@react-three/drei';
 import { easing } from 'maath';
@@ -71,6 +71,52 @@ function StudioLighting() {
 }
 
 export function Scene() {
+  const carGroupRef = useRef<THREE.Group>(null);
+  const scrollYRef = useRef(0);
+  const thresholdRef = useRef(800);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      scrollYRef.current = window.scrollY;
+    };
+    const handleResize = () => {
+      thresholdRef.current = window.innerHeight * 0.8;
+    };
+    
+    // Initial values
+    if (typeof window !== 'undefined') {
+        handleResize();
+        handleScroll();
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('resize', handleResize, { passive: true });
+    }
+
+    return () => {
+      if (typeof window !== 'undefined') {
+          window.removeEventListener('scroll', handleScroll);
+          window.removeEventListener('resize', handleResize);
+      }
+    };
+  }, []);
+
+  useFrame((state, delta) => {
+    if (!carGroupRef.current) return;
+    
+    // Determine how far down the user has scrolled relative to viewport height
+    const scrollRatio = thresholdRef.current > 0 ? Math.max(0, scrollYRef.current / thresholdRef.current) : 0;
+    
+    // When scrollRatio == 0, targetZ is 0 (normal view)
+    // When scrollRatio reaches 1 (100vh), targetZ blasts up to 15 (past the camera at Z=6)
+    const targetZ = Math.pow(scrollRatio, 2.5) * 15;
+    
+    // Dip slightly downward as it approaches the camera for dramatic framing
+    const targetY = -1 - (scrollRatio * 1.5);
+    
+    // Smoothly spring position
+    easing.damp(carGroupRef.current.position, 'z', targetZ, 0.4, delta);
+    easing.damp(carGroupRef.current.position, 'y', targetY, 0.4, delta);
+  });
+
   return (
     <>
       <CameraRig />
@@ -84,22 +130,22 @@ export function Scene() {
         backgroundBlurriness={1}
       />
 
-
-      {/* The Car */}
-      <CarModel
-        position={[0, -0.5, 0]}
-        scale={1}
-      />
-
-      {/* Contact shadow beneath car */}
-      <ContactShadows
-        position={[0, -0.5, 0]}
-        opacity={0.6}
-        scale={12}
-        blur={2.5}
-        far={4}
-        color="#000000"
-      />
+      {/* The Car Group with Scroll Visibility */}
+      <group ref={carGroupRef} position={[0, -1, 0]}>
+        <CarModel
+          position={[0, 0, 0]}
+          scale={1}
+        />
+        {/* Contact shadow beneath car */}
+        <ContactShadows
+          position={[0, 0, 0]}
+          opacity={0.6}
+          scale={12}
+          blur={2.5}
+          far={4}
+          color="#000000"
+        />
+      </group>
 
       {/* Subtle star particles in background */}
       <Stars

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&amp;family=Manrope:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#e50000",
+                    "on-primary-container": "#fff6f4",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-primary-fixed-variant": "#930100",
+                    "tertiary-fixed-dim": "#b1c5ff",
+                    "on-surface-variant": "#e9bcb5",
+                    "surface-tint": "#ffb4a8",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-secondary-container": "#b7b5b4",
+                    "error-container": "#93000a",
+                    "background": "#131313",
+                    "on-tertiary-container": "#f8f7ff",
+                    "on-error": "#690005",
+                    "on-tertiary-fixed": "#001847",
+                    "on-tertiary": "#002c72",
+                    "inverse-primary": "#c00000",
+                    "primary-fixed": "#ffdad4",
+                    "on-tertiary-fixed-variant": "#0040a0",
+                    "on-surface": "#e2e2e2",
+                    "surface-container-high": "#2a2a2a",
+                    "on-secondary": "#313030",
+                    "inverse-on-surface": "#303030",
+                    "outline-variant": "#5f3f3a",
+                    "tertiary": "#b1c5ff",
+                    "on-background": "#e2e2e2",
+                    "error": "#ffb4ab",
+                    "outline": "#b08781",
+                    "surface-container": "#1f1f1f",
+                    "surface-container-highest": "#353535",
+                    "secondary": "#c8c6c5",
+                    "primary-fixed-dim": "#ffb4a8",
+                    "primary": "#ffb4a8",
+                    "tertiary-fixed": "#dae2ff",
+                    "surface-dim": "#131313",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed": "#e5e2e1",
+                    "surface": "#131313",
+                    "on-secondary-fixed-variant": "#474746",
+                    "on-primary": "#690000",
+                    "on-primary-fixed": "#410000",
+                    "tertiary-container": "#0068f8",
+                    "surface-container-low": "#1b1b1b",
+                    "secondary-container": "#474746",
+                    "surface-container-lowest": "#0e0e0e",
+                    "inverse-surface": "#e2e2e2",
+                    "surface-variant": "#353535",
+                    "surface-bright": "#393939"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 200, "GRAD" 0, "opsz" 24
+    }
+.cinematic-grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBuu4xF3MBsR1sUXijogEkqlKfy-Ah7cwMJCvZgKJ3fYhpF0pQ7DeYr652vwwUfq5ifxf3WEyTYO0SUblAOppW3hk6veq-wmN2QOUxx5HnTQYOXPhdK_u5G2mXFC6Gg1PmiM-FlEm98VpkLv5Zh3aK6C1K4B94A9TRj1481ngb3s4HsPA68HVEd_UIT6qK8i1ApjgXDAOnZ8MHgDPfH36bbtZODgofs7-CeTIZnceQCap4AXvI-jIvfE6lNmwBJk1G5tQAoiCuQRDY)
+    }
+.text-glow-red {
+    text-shadow: 0 0 20px rgba(229, 0, 0, 0.4)
+    }
+.primary-gradient-cta {
+    background: linear-gradient(135deg, #E50000 0%, #930100 100%)
+    }
+.glass-panel {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.05)
+    }
+.active-red-glow {
+    box-shadow: 0 0 40px -10px rgba(229, 0, 0, 0.6);
+    border: 1px solid rgba(229, 0, 0, 0.3)
+    }</style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
+<div class="cinematic-grain"></div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 rounded-none bg-white/5 backdrop-blur-3xl dark:bg-black/5 flex justify-between items-center px-12 py-6 max-w-full mx-auto">
+<div class="font-['Space_Grotesk'] text-2xl font-bold tracking-tighter text-white dark:text-white uppercase">SHALOM</div>
+<div class="hidden md:flex items-center gap-12">
+<a class="font-['Space_Grotesk'] uppercase tracking-widest text-xs transition-all duration-500 ease-in-out text-white/70 hover:text-red-500" href="#">Services</a>
+<a class="font-['Space_Grotesk'] uppercase tracking-widest text-xs transition-all duration-500 ease-in-out text-white/70 hover:text-red-500" href="#">Prices</a>
+<a class="font-['Space_Grotesk'] uppercase tracking-widest text-xs transition-all duration-500 ease-in-out text-white/70 hover:text-red-500" href="#">Contact</a>
+</div>
+<button class="md:hidden text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</nav>
+<main class="relative min-h-screen flex flex-col justify-center px-8 md:px-24 pt-20">
+<!-- Background Asset (Asymmetric Bleed) -->
+<div class="absolute top-0 right-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
+<img class="w-[120%] h-full object-cover opacity-60 translate-x-1/4 scale-110 object-right grayscale brightness-50" data-alt="dramatic side profile of a dark matte luxury sports car with sharp crimson lighting reflections in a minimalist studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBftuolYvDJRpq2LjvizH_Qrq2XY4o65qKAPs1olQOgnQ93B4lO_i99ysWzqsuzuEVUF7Jbe3k6fB-X8WtZyTtzj_rfbmzE0N7xMvRS7MYFUTkVOjMLw5l1p5SFACHJqcuZ2HgFbu5_cfn9RJybirfhLThXK21WBub0PQsWR7GdGH9k6GkerskV4q9cmhCCkow_ODdFvaS-M8aHmpnJI116QJxdDvN0a5UV9qwjuXGcrcb1DH8heaKmewtThYQvXvtPCm4kvyztueA"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent"></div>
+</div>
+<!-- Hero Content Section -->
+<div class="relative z-10 w-full max-w-6xl">
+<!-- Massive Asymmetric Typography -->
+<div class="flex flex-col mb-12">
+<h1 class="font-headline text-[15vw] leading-[0.8] font-bold tracking-[-0.04em] uppercase text-white">
+                    FLAWLESS.
+                </h1>
+<div class="flex items-center gap-8 translate-x-[10%]">
+<div class="h-[2px] w-32 bg-primary-container hidden md:block"></div>
+<h1 class="font-headline text-[8vw] leading-[0.8] font-bold tracking-[-0.04em] uppercase text-on-surface-variant">
+                        BY DESIGN.
+                    </h1>
+</div>
+</div>
+<!-- Subheadline & CTA Container -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-12 mt-12">
+<div class="max-w-md space-y-8">
+<p class="text-lg md:text-xl font-body leading-relaxed text-on-surface/80">
+                        Next-Generation Automotive Protection &amp; Detailing in Vashi. Experience the pinnacle of surface engineering.
+                    </p>
+<button class="primary-gradient-cta px-12 py-5 font-headline font-bold text-white tracking-widest rounded-none uppercase transition-transform active:scale-95 duration-300">
+                        BOOK MASTERCLASS
+                    </button>
+</div>
+<!-- Floating Glassmorphism Panel (Material Swap) -->
+<div class="glass-panel p-8 w-full md:w-80 flex flex-col gap-6 relative">
+<div class="flex items-center gap-3">
+<span class="font-label text-[0.6875rem] uppercase tracking-[0.2em] text-white/50">Surface Selector</span>
+<div class="h-px flex-grow bg-white/10"></div>
+</div>
+<ul class="space-y-4">
+<li class="group cursor-pointer flex justify-between items-center transition-all duration-500">
+<span class="font-headline text-sm tracking-widest text-white/60 group-hover:text-white uppercase">Gloss PPF</span>
+<div class="w-2 h-2 bg-white/20"></div>
+</li>
+<li class="group cursor-pointer flex justify-between items-center active-red-glow p-3 -mx-3 bg-white/5 transition-all duration-500">
+<span class="font-headline text-sm tracking-widest text-white uppercase text-glow-red">Matte Wrap</span>
+<div class="w-2 h-2 bg-primary-container shadow-[0_0_10px_#e50000]"></div>
+</li>
+<li class="group cursor-pointer flex justify-between items-center transition-all duration-500">
+<span class="font-headline text-sm tracking-widest text-white/60 group-hover:text-white uppercase">Ceramic Coating</span>
+<div class="w-2 h-2 bg-white/20"></div>
+</li>
+</ul>
+<div class="font-label text-[0.6rem] text-white/40 tracking-wider">
+                        ESTIMATED DURABILITY: 10+ YEARS
+                    </div>
+</div>
+</div>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4">
+<span class="font-label text-[0.6rem] uppercase tracking-[0.4em] text-white/40 rotate-180 [writing-mode:vertical-lr]">EXPLORE</span>
+<div class="w-[2px] h-24 bg-surface-container-highest relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1/2 bg-primary-container shadow-[0_0_15px_#e50000]"></div>
+</div>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="w-full rounded-none bg-[#131313] dark:bg-[#131313] flex flex-col items-center justify-center py-12 px-8 border-t border-white/5 mt-auto">
+<div class="font-['Space_Grotesk'] font-bold text-white mb-6">SHALOM</div>
+<div class="flex gap-8 mb-8">
+<a class="font-['Manrope'] text-[0.6875rem] uppercase tracking-[0.1em] text-white/40 hover:text-red-500 transition-colors duration-300" href="#">Instagram</a>
+<a class="font-['Manrope'] text-[0.6875rem] uppercase tracking-[0.1em] text-white/40 hover:text-red-500 transition-colors duration-300" href="#">Privacy Policy</a>
+<a class="font-['Manrope'] text-[0.6875rem] uppercase tracking-[0.1em] text-white/40 hover:text-red-500 transition-colors duration-300" href="#">Terms</a>
+</div>
+<p class="font-['Manrope'] text-[0.6875rem] uppercase tracking-[0.1em] text-white/40">© 2024 SHALOM LUXURY DETAILING. ALL RIGHTS RESERVED.</p>
+</footer>
+</body></html>

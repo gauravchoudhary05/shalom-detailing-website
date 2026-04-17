@@ -1,16 +1,26 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, Space_Grotesk } from 'next/font/google';
+import { Inter, Space_Grotesk, Montserrat } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import '@/app/globals.css';
-const spaceGrotesk = Space_Grotesk({
+
+const fontMono = Space_Grotesk({
   subsets: ['latin'],
-  variable: '--font-space',
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-mono',
   display: 'swap',
 });
 
-const inter = Inter({
+const fontSans = Inter({
   subsets: ['latin'],
-  variable: '--font-inter',
+  weight: ['300', '400', '500'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const fontHeading = Montserrat({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '700'],
+  variable: '--font-heading',
   display: 'swap',
 });
 
@@ -35,10 +45,13 @@ export default function RootLayout({
   return (
     // 1. MUST NOT be wrapped in <> or </>
     // 2. MUST contain <html> and <body>
-    <html lang="en" className={cn(spaceGrotesk.variable, inter.variable, 'dark')}>
+    <html lang="en" className="dark">
       <body
         className={cn(
-          "bg-black text-white font-inter antialiased overflow-x-hidden",
+          fontSans.variable,
+          fontHeading.variable,
+          fontMono.variable,
+          "bg-black text-white font-sans antialiased overflow-x-hidden",
           "selection:bg-[#E50914] selection:text-white"
         )}
       >
