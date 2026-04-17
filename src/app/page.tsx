@@ -48,41 +48,41 @@ export default function HomePage() {
   return (
     <main id="main-content" className="w-full">
       <LoadingScreen />
-      
+
       {/* Section 1: 3D Canvas UI Overlays */}
-      <section className="relative h-screen w-full pointer-events-none">
+      <section className="relative h-[100svh] w-full pointer-events-none">
         {/* 3D Canvas */}
         <CanvasWrapper />
 
         {/* UI Overlays */}
         <div className="pointer-events-auto z-50">
-            <Navbar />
-            <ServiceSelector />
-            <CameraControls />
-            <HUD />
+          <Navbar />
+          <ServiceSelector />
+          <CameraControls />
+          <HUD />
 
-            {/* Scroll Indicator (Bottom Anchor) */}
-            <div 
-                className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center pointer-events-auto cursor-pointer hover:opacity-100 transition-opacity duration-500 z-50" 
-                onClick={() => document.getElementById('hero-section')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-                <span className="text-white/40 text-[8px] tracking-[0.4em] uppercase font-mono mb-4 text-shadow-md">
-                    EXPLORE
-                </span>
-                <div className="w-px h-16 bg-gradient-to-b from-white/20 to-transparent relative overflow-hidden backdrop-blur-sm">
-                    <div className="w-full h-1/3 bg-white absolute top-0 animate-[scroll-drop_2s_cubic-bezier(0.16,1,0.3,1)_infinite]" />
-                </div>
+          {/* Scroll Indicator (Bottom Anchor) */}
+          <div
+            className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center pointer-events-auto cursor-pointer hover:opacity-100 transition-opacity duration-500 z-50"
+            onClick={() => document.getElementById('hero-section')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            <span className="text-white/40 text-[8px] tracking-[0.4em] uppercase font-mono mb-4 text-shadow-md">
+              EXPLORE
+            </span>
+            <div className="w-px h-16 bg-gradient-to-b from-white/20 to-transparent relative overflow-hidden backdrop-blur-sm">
+              <div className="w-full h-1/3 bg-white absolute top-0 animate-[scroll-drop_2s_cubic-bezier(0.16,1,0.3,1)_infinite]" />
             </div>
-            
-            <style dangerouslySetInnerHTML={{
-                __html: `
+          </div>
+
+          <style dangerouslySetInnerHTML={{
+            __html: `
                 @keyframes scroll-drop {
                     0% { transform: translateY(-100%); opacity: 0; }
                     50% { opacity: 1; }
                     100% { transform: translateY(300%); opacity: 0; }
                 }
                 `
-            }} />
+          }} />
         </div>
       </section>
 

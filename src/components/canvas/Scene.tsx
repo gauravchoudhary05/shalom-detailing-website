@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { Environment, ContactShadows, Stars, OrbitControls } from '@react-three/drei';
 import { easing } from 'maath';
@@ -74,6 +74,7 @@ export function Scene() {
   const carGroupRef = useRef<THREE.Group>(null);
   const scrollYRef = useRef(0);
   const thresholdRef = useRef(800);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -81,6 +82,7 @@ export function Scene() {
     };
     const handleResize = () => {
       thresholdRef.current = window.innerHeight * 0.8;
+      setIsMobile(window.matchMedia('(max-width: 768px)').matches);
     };
     
     // Initial values
@@ -109,8 +111,9 @@ export function Scene() {
     // When scrollRatio reaches 1 (100vh), targetZ blasts up to 15 (past the camera at Z=6)
     const targetZ = Math.pow(scrollRatio, 2.5) * 15;
     
-    // Dip slightly downward as it approaches the camera for dramatic framing
-    const targetY = -1 - (scrollRatio * 1.5);
+    // Dip slightly downward as it approaches the camera for dramatic framing (adjusted for mobile start pos)
+    const baseTargetY = isMobile ? -1.5 : -1;
+    const targetY = baseTargetY - (scrollRatio * 1.5);
     
     // Smoothly spring position
     easing.damp(carGroupRef.current.position, 'z', targetZ, 0.4, delta);
@@ -131,7 +134,7 @@ export function Scene() {
       />
 
       {/* The Car Group with Scroll Visibility */}
-      <group ref={carGroupRef} position={[0, -1, 0]}>
+      <group ref={carGroupRef} position={[0, isMobile ? -1.5 : -1, 0]} scale={isMobile ? 0.65 : 1}>
         <CarModel
           position={[0, 0, 0]}
           scale={1}
