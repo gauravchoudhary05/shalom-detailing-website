@@ -19,7 +19,7 @@ const CanvasWrapper = dynamic(
     loading: () => (
       <div
         style={{
-          position: 'fixed',
+          position: 'absolute',
           inset: 0,
           display: 'flex',
           alignItems: 'center',
@@ -46,16 +46,21 @@ const CanvasWrapper = dynamic(
 
 export default function HomePage() {
   return (
-    <main id="main-content" className="w-full">
+    <main id="main-content" className="relative w-full">
       <LoadingScreen />
 
-      {/* Section 1: 3D Canvas UI Overlays */}
-      <section className="relative min-h-[100svh] w-full pointer-events-none">
-        {/* 3D Canvas */}
+      {/* ──────────────────────────────────────────────
+          STICKY 3D CANVAS LAYER
+          - sticky keeps it pinned while user scrolls
+          - h-[100svh] locks it to viewport height
+          - z-0 so content sections scroll OVER it
+      ────────────────────────────────────────────── */}
+      <div className="sticky top-0 w-full h-[100svh] z-0">
+        {/* 3D Canvas (position: absolute, fills this sticky parent) */}
         <CanvasWrapper />
 
-        {/* UI Overlays */}
-        <div className="pointer-events-none z-50">
+        {/* UI Overlays — pointer-events-none on wrapper, auto on children via CSS */}
+        <div className="absolute inset-0 z-10 pointer-events-none">
           <Navbar />
           <ServiceSelector />
           <CameraControls />
@@ -84,15 +89,25 @@ export default function HomePage() {
                 `
           }} />
         </div>
-      </section>
+      </div>
+
+      {/* ──────────────────────────────────────────────
+          SCROLLABLE CONTENT LAYERS
+          - z-10 so they render ABOVE the sticky canvas
+          - bg + backdrop-blur so content covers the 3D
+      ────────────────────────────────────────────── */}
 
       {/* Section 2: Marketing Hero (Typography) */}
-      <div id="hero-section" className="relative w-full z-10 pointer-events-none">
+      <div
+        id="hero-section"
+        className="relative w-full z-10"
+        style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.95) 30%, #000000 100%)' }}
+      >
         <HeroSection />
       </div>
 
       {/* Section 3: Services Section */}
-      <section id="services" className="relative w-full z-10">
+      <section id="services" className="relative w-full z-10 bg-black">
         <ServicesSection />
       </section>
 
