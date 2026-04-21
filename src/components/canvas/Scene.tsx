@@ -123,7 +123,7 @@ export function Scene() {
   return (
     <>
       <CameraRig />
-      <OrbitControls enableZoom={false} makeDefault />
+      <OrbitControls enableZoom={false} enablePan={false} makeDefault />
       <StudioLighting />
 
       {/* Environment for reflections */}

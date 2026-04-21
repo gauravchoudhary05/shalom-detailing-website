@@ -50,12 +50,12 @@ export default function HomePage() {
       <LoadingScreen />
 
       {/* Section 1: 3D Canvas UI Overlays */}
-      <section className="relative h-[100svh] w-full pointer-events-none">
+      <section className="relative min-h-[100svh] w-full pointer-events-none">
         {/* 3D Canvas */}
         <CanvasWrapper />
 
         {/* UI Overlays */}
-        <div className="pointer-events-auto z-50">
+        <div className="pointer-events-none z-50">
           <Navbar />
           <ServiceSelector />
           <CameraControls />

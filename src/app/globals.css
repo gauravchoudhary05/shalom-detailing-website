@@ -225,6 +225,7 @@ button {
   justify-content: space-between;
   padding: 24px 48px;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.3) 60%, transparent 100%);
+  pointer-events: auto;
 }
 
 .navbar__brand {
@@ -326,6 +327,7 @@ button {
   bottom: 40px;
   z-index: 50;
   min-width: 240px;
+  pointer-events: auto;
 }
 
 .service-selector__title {
@@ -412,6 +414,7 @@ button {
   right: 32px;
   bottom: 40px;
   z-index: 50;
+  pointer-events: auto;
 }
 
 .camera-controls__title {

@@ -39,6 +39,7 @@ export function CanvasWrapper() {
           width: '100%',
           height: '100%',
           zIndex: 0,
+          touchAction: 'pan-y',
         }}
       >
         <color attach="background" args={['#000000']} />

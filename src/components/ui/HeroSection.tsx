@@ -4,7 +4,7 @@ import SoftAurora from './SoftAurora';
 
 export function HeroSection() {
     return (
-        <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 relative z-10 w-full overflow-hidden pointer-events-none">
+        <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 relative z-10 w-full pointer-events-none">
             {/* Background Integration */}
             <div className="absolute inset-0 -z-10 pointer-events-none">
                 <SoftAurora 
