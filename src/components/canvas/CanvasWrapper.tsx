@@ -16,7 +16,7 @@ function Loader() {
 
 export function CanvasWrapper() {
   return (
-    <div id="canvas-container" className="canvas-container">
+    <div id="canvas-container" className="canvas-container touch-pan-y">
       <Canvas
         shadows
         dpr={[1, 2]}

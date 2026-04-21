@@ -211,6 +211,15 @@ button {
   position: absolute;
   inset: 0;
   z-index: 0;
+  touch-action: pan-y !important;
+}
+
+/* Nuclear override: R3F internally sets touch-action: none on
+   the <canvas> element. This forces pan-y on ALL descendants
+   including the dynamically created canvas. */
+.canvas-container *,
+.canvas-container canvas {
+  touch-action: pan-y !important;
 }
 
 /* ===== NAVBAR ===== */
