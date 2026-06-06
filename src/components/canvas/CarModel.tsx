@@ -8,7 +8,11 @@ import { useConfigStore, SERVICE_MATERIALS } from '@/store/useConfigStore';
 
 const BODY_MATERIAL_NAME = 'body_main';
 
-export function CarModel(props: React.JSX.IntrinsicElements['group']) {
+type CarModelProps = React.JSX.IntrinsicElements['group'] & {
+  inView?: boolean;
+};
+
+export function CarModel({ inView = true, ...props }: CarModelProps) {
   const groupRef = useRef<THREE.Group>(null);
   const { scene, materials } = useGLTF('/models/car.glb');
   const activeService = useConfigStore((s) => s.activeService);
@@ -53,6 +57,7 @@ export function CarModel(props: React.JSX.IntrinsicElements['group']) {
 
   // Subtle idle rotation
   useFrame((_, delta) => {
+    if (!inView) return;
     if (groupRef.current) {
       groupRef.current.rotation.y += delta * 0.05;
     }

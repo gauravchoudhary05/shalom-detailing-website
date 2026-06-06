@@ -1,7 +1,21 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
+import { useConfigStore } from '@/store/useConfigStore';
 import BorderGlow from './BorderGlow';
+
+// Maps ServicesSection card ids → Services.json route ids
+const SERVICE_ROUTES: Record<string, string> = {
+  ppf: 'ppf',
+  ceramic: 'ceramic-coating',
+  graphene: 'graphene-coating',
+  detailing: 'detailing-interior-cleaning',
+  wraps: 'car-wrapping',
+  mods: 'interior-modification',
+  mats: 'seat-covers-floor-mats',
+  other: 'other-services',
+};
 
 // --- EXACT NEW DATA STRUCTURE ---
 const SERVICES = [
@@ -154,6 +168,7 @@ function CloseIcon() {
 
 export function ServicesSection() {
   const [selectedService, setSelectedService] = useState<typeof SERVICES[0] | null>(null);
+  const toggleContact = useConfigStore((s) => s.toggleContact);
 
   return (
     <section
@@ -270,11 +285,11 @@ export function ServicesSection() {
           {SERVICES.map((service, index) => {
 
             return (
-              <div
+              <Link
                 key={service.id}
-                className="service-card-wrapper w-full md:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] flex flex-col cursor-pointer z-10 hover:z-30 will-change-transform"
-                style={{ animationDelay: `${index * 0.1}s` }}
-                onClick={() => setSelectedService(service)}
+                href={`/services/${SERVICE_ROUTES[service.id] || service.id}`}
+                className="service-card-wrapper w-full md:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] flex flex-col z-10 hover:z-30 will-change-transform hover:scale-[1.02] transition-transform duration-300 cursor-pointer block"
+                style={{ animationDelay: `${index * 0.1}s`, textDecoration: 'none', color: 'inherit' }}
               >
               <BorderGlow
                 glowColor={service.premium ? '0 85 45' : '0 0 80'}
@@ -455,7 +470,7 @@ export function ServicesSection() {
                     />
 
                     {/* Features */}
-                    <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '24px' }}>
                       {service.features.map((feature, i) => (
                         <li
                           key={i}
@@ -481,10 +496,44 @@ export function ServicesSection() {
                         </li>
                       ))}
                     </ul>
+
+                    {/* Learn More link */}
+                    {SERVICE_ROUTES[service.id] && (
+                      <span
+                        id={`learn-more-${service.id}`}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                          fontFamily: 'var(--font-heading)',
+                          fontSize: '10px',
+                          fontWeight: 700,
+                          letterSpacing: '2px',
+                          textTransform: 'uppercase',
+                          color: service.premium ? '#E50914' : 'rgba(255,255,255,0.4)',
+                          textDecoration: 'none',
+                          transition: 'color 0.2s, gap 0.2s',
+                          paddingTop: '4px',
+                        }}
+                        onMouseEnter={(e) => {
+                          (e.currentTarget as HTMLElement).style.color = service.premium ? '#ff2020' : '#fff';
+                          (e.currentTarget as HTMLElement).style.gap = '10px';
+                        }}
+                        onMouseLeave={(e) => {
+                          (e.currentTarget as HTMLElement).style.color = service.premium ? '#E50914' : 'rgba(255,255,255,0.4)';
+                          (e.currentTarget as HTMLElement).style.gap = '6px';
+                        }}
+                      >
+                        Full Details
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                      </span>
+                    )}
                   </div>
                 </div>
               </BorderGlow>
-              </div>
+              </Link>
             );
           })}
         </div>
@@ -633,8 +682,8 @@ export function ServicesSection() {
 
                 <button
                   onClick={() => {
-                    document.dispatchEvent(new CustomEvent('open-contact-modal', { detail: selectedService.title }));
                     setSelectedService(null);
+                    toggleContact();
                   }}
                   className="w-full sm:w-auto px-8 py-4 rounded-xl transition-all"
                   style={{

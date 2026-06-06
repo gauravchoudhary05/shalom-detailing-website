@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useRef, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Preload } from '@react-three/drei';
 import { Scene } from './Scene';
@@ -15,11 +15,28 @@ function Loader() {
 }
 
 export function CanvasWrapper() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(true);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0 } // fires as soon as any pixel enters/leaves
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div id="canvas-container" className="canvas-container touch-pan-y">
+    <div ref={containerRef} id="canvas-container" className="canvas-container touch-pan-y">
       <Canvas
         shadows
         dpr={[1, 2]}
+        frameloop={inView ? 'always' : 'demand'}
         camera={{
           position: [5, 2.5, 6],
           fov: 45,
@@ -45,7 +62,7 @@ export function CanvasWrapper() {
         <color attach="background" args={['#000000']} />
         <fog attach="fog" args={['#000000', 30, 80]} />
         <Suspense fallback={<Loader />}>
-          <Scene />
+          <Scene inView={inView} />
           <Preload all />
         </Suspense>
       </Canvas>

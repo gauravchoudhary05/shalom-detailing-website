@@ -8,13 +8,14 @@ import * as THREE from 'three';
 import { useConfigStore } from '@/store/useConfigStore';
 import { CarModel } from './CarModel';
 
-function CameraRig() {
+function CameraRig({ inView }: { inView: boolean }) {
   const cameraTarget = useConfigStore((s) => s.cameraTarget);
   const setIsTransitioning = useConfigStore((s) => s.setIsTransitioning);
   const vec = useRef(new THREE.Vector3());
   const lookAtVec = useRef(new THREE.Vector3());
 
   useFrame((state, delta) => {
+    if (!inView) return;
     const [px, py, pz] = cameraTarget.position;
     const [lx, ly, lz] = cameraTarget.lookAt;
 
@@ -70,7 +71,11 @@ function StudioLighting() {
   );
 }
 
-export function Scene() {
+interface SceneProps {
+  inView: boolean;
+}
+
+export function Scene({ inView }: SceneProps) {
   const carGroupRef = useRef<THREE.Group>(null);
   const scrollYRef = useRef(0);
   const thresholdRef = useRef(800);
@@ -102,7 +107,7 @@ export function Scene() {
   }, []);
 
   useFrame((state, delta) => {
-    if (!carGroupRef.current) return;
+    if (!inView || !carGroupRef.current) return;
     
     // Determine how far down the user has scrolled relative to viewport height
     const scrollRatio = thresholdRef.current > 0 ? Math.max(0, scrollYRef.current / thresholdRef.current) : 0;
@@ -122,7 +127,7 @@ export function Scene() {
 
   return (
     <>
-      <CameraRig />
+      <CameraRig inView={inView} />
       <OrbitControls enableZoom={false} enablePan={false} makeDefault />
       <StudioLighting />
 
@@ -138,6 +143,7 @@ export function Scene() {
         <CarModel
           position={[0, 0, 0]}
           scale={1}
+          inView={inView}
         />
         {/* Contact shadow beneath car */}
         <ContactShadows

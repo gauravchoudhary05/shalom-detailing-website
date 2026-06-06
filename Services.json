@@ -1,0 +1,347 @@
+{
+  "services": [
+    {
+      "id": "ppf",
+      "shortName": "PPF",
+      "fullName": "Paint Protection Film",
+      "tagline": "The Ultimate Shield for Your Vehicle’s Paint",
+      "introduction": [
+        "At Shalom Car & Bike Detailing Services, we offer the most advanced solution to protect your vehicle’s paint — Paint Protection Film, commonly known as PPF.",
+        "This transparent, high-gloss film acts as a rugged and highly effective barrier that safeguards your vehicle from daily wear and tear like scratches, swirl marks, and stone chips."
+      ],
+      "keyBenefits": [
+        "Scratch and stone chip resistance to maintain a factory-finish look",
+        "Protection against UV rays and oxidation, preventing fading or discoloration",
+        "Self-healing surface that erases light scratches and swirl marks",
+        "Resistance to bird droppings, bug splatter, tree sap, and cleaning chemicals",
+        "Enhanced paint gloss with a premium, showroom-like shine",
+        "Clear, invisible application that blends perfectly with your car’s body",
+        "Improved resale value by preserving original paint condition",
+        "Easy maintenance with a hydrophobic surface — no waxing needed",
+        "Custom-fit coverage options based on your vehicle’s design and usage"
+      ],
+      "whyChoose": [
+        {
+          "heading": "Superior Protection",
+          "description": "Worried about accidental scratches in the parking lot or by curious kids in the neighborhood? Our Self-Healing Thermoplastic Polyurethane (TPU) PPF is designed to prevent deep scratches and gashes from damaging your original paint."
+        },
+        {
+          "heading": "Self-Healing Technology",
+          "description": "Our premium TPU films automatically heal minor swirl marks and superficial scratches caused by improper washing."
+        },
+        {
+          "heading": "Durability & Warranty",
+          "description": "We offer PPF with 5, 7, 8, and 10-year warranty plans — choose one that suits your needs and budget."
+        },
+        {
+          "heading": "Comprehensive Coverage",
+          "description": "Enhance protection with add-ons like wheel coatings, glass coatings, and plastic trim protection — all under one roof."
+        }
+      ],
+      "importantNotes": [
+        "The warranty is provided by the PPF brand manufacturer. Final decisions regarding claims rest with the brand.",
+        "Minor dust specs may occur during application due to environmental factors, but we ensure the finish meets high-quality standards.",
+        "PPF is a 2D film applied to a 3D surface, so stretch marks in corners may occasionally occur. We keep this to a minimum.",
+        "Deep scratches may not heal, but in most cases, PPF absorbs the impact and prevents damage to the original paint.",
+        "Like all materials, PPF may slightly yellow over time due to oxidation, but with high-quality films, this happens gradually.",
+        "On repainted panels, PPF may cause peeling when removed due to strong adhesion. Warranty is not applicable on repainted areas.",
+        "For complex-shaped panels, film joints may be used to ensure proper adhesion. We avoid them unless absolutely necessary."
+      ],
+      "pricing": {
+        "startingAt": "₹65,000/-",
+        "disclaimer": "Pricing may vary depending on the size and model of your vehicle."
+      }
+    },
+    {
+      "id": "ceramic-coating",
+      "shortName": "Ceramic Coating",
+      "fullName": "Ceramic Coating",
+      "tagline": "Nano-Technology-Based Protection for Lasting Shine & Defense",
+      "introduction": [
+        "At Shalom Car & Bike Detailing Services, we offer advanced ceramic coating solutions that use cutting-edge nano-technology to protect your vehicle’s surface.",
+        "The coating forms a crystallized 9H or 10H hardness layer over the factory clear coat, providing a durable shield against: light scratches, chemical stains and acid etching, harmful UV rays, oxidation and paint fading.",
+        "Along with protection, the hydrophobic effect reduces water spots and makes regular cleaning much easier."
+      ],
+      "keyBenefits": [
+        "9H / 10H hardness for superior surface protection",
+        "Hydrophobic properties that repel water, dirt, and mud",
+        "UV resistance to prevent paint fading and dullness",
+        "High-gloss finish for a showroom-like appearance",
+        "Resistance to contaminants like bird droppings, tree sap, and road grime"
+      ],
+      "warrantyPlans": [
+        "3-Year Ceramic Coating",
+        "5-Year Ceramic Coating",
+        "7-Year Ceramic Coating"
+      ],
+      "additionalOptions": [
+        "Wheels",
+        "Glass surfaces",
+        "Plastic trims",
+        "Headlights and taillights"
+      ],
+      "importantNotes": [
+        "The durability of the coating depends on driving conditions and regular care.",
+        "No coating is completely scratch-proof. Daily washing and proper maintenance are still necessary.",
+        "Always wash with clean microfiber towels and low-TDS water to avoid swirl marks.",
+        "Annual maintenance is mandatory for ceramic-coated vehicles. This is a paid service.",
+        "Warranty covers issues like discoloration, patchiness, peeling, or cracking—but not third-party painted or repainted panels.",
+        "Maintenance charges may vary based on market conditions and how the vehicle is maintained."
+      ],
+      "pricing": {
+        "startingAt": "₹10,000/-",
+        "disclaimer": "Final pricing depends on the size, condition, and type of your vehicle."
+      }
+    },
+    {
+      "id": "graphene-coating",
+      "shortName": "Graphene Coating",
+      "fullName": "Graphene Coating",
+      "tagline": "The Next Generation in Surface Protection",
+      "introduction": [
+        "At Shalom Car & Bike Detailing Services, we bring you the latest innovation in surface protection — Graphene Coating.",
+        "This advanced nano-coating builds on ceramic technology and enhances it with graphene, the strongest known material on Earth. The result? Better heat resistance, extreme hydrophobicity, and unmatched durability for your vehicle’s paint."
+      ],
+      "keyBenefits": [
+        "Superior water beading with an ultra-slick hydrophobic finish",
+        "Advanced heat resistance reduces chances of water spots and oxidation",
+        "Increased scratch resistance for long-lasting protection",
+        "Anti-static properties help keep dust and dirt away longer",
+        "Longer lifespan compared to traditional ceramic coatings"
+      ],
+      "whyChoose": [
+        {
+          "heading": "Why Choose Graphene Over Ceramic?",
+          "description": "While ceramic coatings offer excellent durability and gloss, graphene takes it a step further. It delivers added slickness, higher endurance under harsh conditions, and better UV/chemical resistance. Ideal for customers seeking premium-level protection and performance with a stunning visual finish."
+        }
+      ],
+      "warrantyPlans": [
+        "5-Year Graphene Coating",
+        "7-Year Graphene Coating",
+        "10-Year Graphene Coating"
+      ],
+      "additionalOptions": [
+        "Body",
+        "Wheels",
+        "Glasses",
+        "Plastic trims"
+      ],
+      "importantNotes": [
+        "Regular care is required to maintain maximum performance.",
+        "Annual maintenance service is recommended (chargeable).",
+        "No coating is completely scratch-proof, but graphene has higher resistance than ceramic.",
+        "Warranty does not cover repainted panels.",
+        "Issues like discoloration, peeling, or patchiness are covered under the warranty."
+      ],
+      "pricing": {
+        "startingAt": "₹18,000/-",
+        "disclaimer": "Pricing may vary depending on your vehicle’s size, condition, and coverage area."
+      }
+    },
+    {
+      "id": "detailing-interior-cleaning",
+      "shortName": "Detailing",
+      "fullName": "Detailing & Interior Cleaning",
+      "tagline": "What is Car Detailing?",
+      "introduction": [
+        "Car detailing is a deep and thorough cleaning process for both the interior and exterior of your vehicle. It goes far beyond a regular car wash — restoring, protecting, and enhancing every surface of your car including paint, glass, plastic, leather, and fabric. The result is a vehicle that looks, feels, and smells like new."
+      ],
+      "keyBenefits": [
+        "Maintains resale value by keeping the vehicle in top condition",
+        "Protects paint and surfaces from fading, oxidation, and scratches",
+        "Improves interior hygiene by removing dust, bacteria, and allergens",
+        "Prevents long-term wear and tear on materials and finishes",
+        "Keeps your car looking fresh, glossy, and well-maintained"
+      ],
+      "servicesIncludedList": [
+        "Ceramic & Graphene-Induced Wax Coating",
+        "Rubbing & Polishing",
+        "Premium Foam Washing",
+        "Interior Vacuum Cleaning",
+        "Deep Interior Detailing (leather, plastic, roof, and fabric surfaces)"
+      ],
+      "importantNotes": [
+        "Whether your car looks dull, has swirl marks, water spots, or just needs a refresh after a long trip — we’ve got the perfect detailing package for you.",
+        "At Shalom Car & Bike Detailing Services, we focus on the fine details that bring back the shine — without hurting your wallet."
+      ],
+      "pricing": {
+        "startingAt": "₹1,250/-",
+        "disclaimer": "Price may vary depending on the size and condition of your vehicle."
+      }
+    },
+    {
+      "id": "car-wrapping",
+      "shortName": "Wrapping",
+      "fullName": "Car Wrapping",
+      "tagline": "Transform Your Car Without Compromising the Original Paint",
+      "introduction": [
+        "Vinyl wrapping is a stylish and non-permanent way to give your vehicle a bold new look — without affecting the factory paint. Whether you’re opting for a full color change, sporty dual-tone wrap, or a minimalistic bonnet stripe, we deliver with unmatched precision and finish."
+      ],
+      "whyChoose": [
+        {
+          "heading": "Why Choose Our Wrapping Services?",
+          "description": "Over 300+ colors and textures available. OEM-safe application that keeps your factory paint untouched. Premium materials and expert installation for flawless results. Includes 2-Year Application Warranty."
+        }
+      ],
+      "idealFor": [
+        "Car owners wanting a personalized look without permanent modification",
+        "Vehicles with original paint in good condition",
+        "Anyone looking to stand out while preserving resale value"
+      ],
+      "additionalOptions": [
+        "Wheel Coating",
+        "Glass Coating",
+        "Plastic Trim Coating"
+      ],
+      "importantNotes": [
+        "We use only best-in-class vinyl wrap materials for durability",
+        "Color changes should be legally updated in the RC via your local RTO",
+        "Avoid high-pressure washing near wrap edges to maintain longevity",
+        "Our 2-year warranty covers peeling due to natural causes, not misuse or mishandling"
+      ],
+      "pricing": {
+        "startingAt": "₹90,000/-",
+        "disclaimer": "Final cost may vary based on car size, color type, and customizations."
+      }
+    },
+    {
+      "id": "interior-modification",
+      "shortName": "Interior Mods",
+      "fullName": "Interior Modification",
+      "tagline": "Redefine Comfort. Elevate Style. Personalize Your Drive.",
+      "introduction": [
+        "Your car’s interior is more than just a space — it’s where you spend hours during commutes, road trips, and daily drives. At Shalom Car & Bike Detailing Services, we specialize in interior modification to transform your vehicle’s cabin into a personalized, premium space that reflects your taste and comfort needs.",
+        "Interior modification involves upgrading and personalizing different components of your car’s cabin — from the dashboard and seats to lighting and storage — to create a unique, comfortable, and stylish driving environment."
+      ],
+      "servicesIncluded": [
+        {
+          "heading": "Custom Seat Covers",
+          "description": "Premium leatherette, PU leather, and fabric seat covers for a snug fit and luxurious feel."
+        },
+        {
+          "heading": "Dashboard Wrapping & Trims",
+          "description": "Glossy carbon fiber, matte, wood grain, or brushed aluminum wraps for a transformed look."
+        },
+        {
+          "heading": "Ambient & Mood Lighting",
+          "description": "Multi-color lighting around footwells, dashboard, and doors — synced to music or remote-controlled."
+        },
+        {
+          "heading": "Roof Liner Customization",
+          "description": "Suede, leather, or starlight roof liners for a refined finish."
+        },
+        {
+          "heading": "Steering Wheel Wraps & Upgrades",
+          "description": "Leather-wrapped or sporty steering options for improved aesthetics and grip."
+        },
+        {
+          "heading": "7D/9D Floor Mats",
+          "description": "Custom-fit mats with designer stitching for style and protection."
+        },
+        {
+          "heading": "Door Pads & Panel Work",
+          "description": "Matching or contrast door pads and inserts for a cohesive interior theme."
+        },
+        {
+          "heading": "Audio System Upgrades",
+          "description": "High-end speakers, subwoofers, and infotainment systems for an enhanced audio experience."
+        },
+        {
+          "heading": "Sunshades & Insulation",
+          "description": "Thermal and acoustic solutions for a quieter, cooler, and more private cabin."
+        }
+      ],
+      "whyChoose": [
+        {
+          "heading": "Personalization",
+          "description": "Unique themes, textures, and colors tailored to your style"
+        },
+        {
+          "heading": "Comfort Upgrade",
+          "description": "Luxurious, ergonomic interiors for everyday comfort"
+        },
+        {
+          "heading": "Increased Resale Value",
+          "description": "Attractive interiors boost your car’s appeal"
+        },
+        {
+          "heading": "Functionality & Tech Add-ons",
+          "description": "Smart upgrades that enhance convenience"
+        }
+      ],
+      "pricing": {
+        "startingAt": "Fully Customizable Packages",
+        "disclaimer": "Get in touch for a tailored quote based on your preferences and car model."
+      }
+    },
+    {
+      "id": "seat-covers-floor-mats",
+      "shortName": "Seat Covers & Mats",
+      "fullName": "Premium Seat Covers & 7D Floor Mats",
+      "tagline": "Upgrade Your Car’s Comfort & Interior Style",
+      "introduction": [
+        "A great car interior isn’t just about looks — it’s about comfort, cleanliness, and durability. Our premium seat covers and 7D floor mats are custom-fitted to your car model and elevate your driving experience with a blend of luxury and practicality."
+      ],
+      "servicesIncluded": [
+        {
+          "heading": "Custom Seat Covers",
+          "description": "Give your cabin a fresh look with stylish protection. Custom Fit: Tailored to your specific car model for a perfect finish. Premium Materials: Choose from leatherette, PU leather, fabric, and more. Stylish Designs: Multiple stitch patterns and color combinations. Easy Maintenance: Spill and stain-resistant for hassle-free cleaning. Comfort Focused: Cushioned design makes long drives more enjoyable. Protects Original Seats: Prevents wear and tear from daily use."
+        },
+        {
+          "heading": "7D Luxury Floor Mats",
+          "description": "Elegant protection that goes beyond ordinary mats. All-Weather Use: Resists dust, mud, water, and accidental spills. Multi-Layer Structure: Anti-skid bottom, cushioned middle, and leather finish on top. Vehicle-Specific Fit: Designed for each car make and model. Easy to Clean: Quick wipe or rinse does the job. Luxurious Appeal: Diamond-stitched designs enhance aesthetics. Full Floor Coverage: Footwells, sidewalls, and under-seat areas included."
+        }
+      ],
+      "keyBenefits": [
+        "Keeps your cabin clean, organized, and hygienic",
+        "Maintains your car’s resale value by protecting interiors",
+        "Enhances both appearance and driving comfort"
+      ],
+      "pricing": {
+        "startingAt": "Custom Packages Available",
+        "disclaimer": "Contact us for a quote based on your vehicle model and preferences."
+      }
+    },
+    {
+      "id": "other-services",
+      "shortName": "Other Services",
+      "fullName": "Other Services: Complete Interior Detailing Services",
+      "tagline": "Restore That New-Car Feel With Deep Interior Cleaning & Polishing",
+      "introduction": [
+        "A clean, polished, and hygienic car interior not only enhances comfort but also reflects your personality. Our expert car detailing services are designed to rejuvenate every inch of your car’s cabin — from seats and flooring to glass and roof lining."
+      ],
+      "servicesIncluded": [
+        {
+          "heading": "Interior Vacuuming & Body Washing",
+          "description": "Deep cleaning for dust-free, spotless interiors. Full cabin vacuuming: carpets, footwells, seats & corners. Gentle yet effective car body wash with pH-balanced shampoo. Door panels, dashboard, and trunk area dust removal. Eliminates allergens, pet hair & microdust particles."
+        },
+        {
+          "heading": "Windshield & Glass Polishing",
+          "description": "Crystal-clear visibility, inside and out. Professional-grade polish for windshield, side and rear glasses. Removes water spots, fingerprints, haze, and grime. Enhances nighttime visibility & driving safety. Anti-fog & water-beading treatments available."
+        },
+        {
+          "heading": "Steering, Gear Knob & Gear Bellow Cover Cleaning",
+          "description": "The most-touched surfaces deserve the most care. Degreasing and disinfecting of steering & gear knobs. Leather/PU covers treated with conditioners. Gear bellow cleaned to restore original texture. Kills bacteria and removes sweat build-up."
+        },
+        {
+          "heading": "Headlight & Taillight Restoration",
+          "description": "Bring back the shine – and safety. Oxidation removal from dull or yellowed lights. Sanding, polishing & UV protection coating. Restores brightness and improves night visibility. Adds value to your car’s appearance."
+        },
+        {
+          "heading": "Headliner Replacement",
+          "description": "A sagging roof lining? We’ll fix it like new. Complete removal and re-application of headliner fabric. High-quality foam-backed material in multiple color options. Precision fitting with durable adhesives. Eliminates drooping, stains & bad odors."
+        }
+      ],
+      "keyBenefits": [
+        "Keeps your car’s interior fresh, hygienic, and like-new",
+        "Prevents wear, damage, and mold buildup",
+        "Increases resale value and driving comfort",
+        "Creates a relaxing, professional driving experience"
+      ],
+      "pricing": {
+        "startingAt": "Tailored Packages for Every Car Type",
+        "disclaimer": "Contact us for a personalized quote based on your car model, interior condition, and specific services required."
+      }
+    }
+  ]
+}

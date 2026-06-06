@@ -6,7 +6,7 @@ import { ServiceSelector } from '@/components/ui/ServiceSelector';
 import { CameraControls } from '@/components/ui/CameraControls';
 import { HUD } from '@/components/ui/HUD';
 import { PricingOverlay } from '@/components/ui/PricingOverlay';
-import { ContactForm } from '@/components/ui/ContactForm';
+
 import { HeroSection } from '@/components/ui/HeroSection';
 import { ServicesSection } from '@/components/ui/ServicesSection';
 import { LoadingScreen } from '@/components/ui/LoadingScreen';
@@ -113,7 +113,6 @@ export default function HomePage() {
 
       {/* Modal Overlays */}
       <PricingOverlay />
-      <ContactForm />
     </main>
   );
 }

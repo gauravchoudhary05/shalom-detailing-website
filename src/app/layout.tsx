@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, Space_Grotesk, Montserrat } from 'next/font/google';
 import { cn } from '@/lib/utils';
+import { ContactForm } from '@/components/ui/ContactForm';
+import { Footer } from '@/components/ui/Footer';
 import '@/app/globals.css';
 
 const fontMono = Space_Grotesk({
@@ -56,6 +58,8 @@ export default function RootLayout({
         )}
       >
         {children}
+        <ContactForm />
+        <Footer />
       </body>
     </html>
   );

@@ -45,6 +45,7 @@ The objective is to transform Shalom Car Detailing’s digital presence from a s
 
 ## 5. User Experience (UX) & Design Requirements
 * **Aesthetic:** "Brutalist-Luxury." Heavy blacks, sharp edges, and dramatic lighting.
+* **Call-to-Action (CTA) UI (CRITICAL OVERRIDE):** Primary and Secondary CTAs (like "BOOK APPOINTMENT" and "SERVICES") MUST be rendered as large, prominent, structural boxes. Do not default to plain text links. Use generous padding (e.g., `px-12 py-4`), explicit minimum widths, and defined borders (e.g., `border-white/60`) to create massive, clickable targets suitable for both desktop and mobile. 
 * **Color Palette:**
     * **Background:** Absolute Black (`#000000`).
     * **Accent:** Racing Red (`#E50914`).
