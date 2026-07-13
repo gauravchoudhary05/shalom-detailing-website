@@ -8,6 +8,9 @@ import { useConfigStore, SERVICE_MATERIALS } from '@/store/useConfigStore';
 
 const BODY_MATERIAL_NAME = 'body_main';
 
+// Shared rotation ref — Scene.tsx reads this to know the car's facing direction
+export const carRotationY = { current: 0 };
+
 type CarModelProps = React.JSX.IntrinsicElements['group'] & {
   inView?: boolean;
 };
@@ -55,11 +58,13 @@ export function CarModel({ inView = true, ...props }: CarModelProps) {
     });
   }, [activeService, clonedScene]);
 
+
   // Subtle idle rotation
   useFrame((_, delta) => {
     if (!inView) return;
     if (groupRef.current) {
       groupRef.current.rotation.y += delta * 0.05;
+      carRotationY.current = groupRef.current.rotation.y;
     }
   });
 

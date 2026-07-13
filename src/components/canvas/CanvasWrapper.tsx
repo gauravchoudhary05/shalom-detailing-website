@@ -4,6 +4,22 @@ import { Suspense, useRef, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Preload } from '@react-three/drei';
 import { Scene } from './Scene';
+import * as THREE from 'three';
+
+// Suppress THREE.Clock deprecation warning from @react-three/fiber internals.
+// R3F still uses Clock; Three.js r183+ deprecated it in favor of Timer.
+// This is safe to remove once R3F updates its internals.
+// Also suppress Angle shader compiler precision warnings.
+if (typeof window !== 'undefined') {
+  const _warn = console.warn;
+  console.warn = (...args: unknown[]) => {
+    if (typeof args[0] === 'string') {
+      if (args[0].includes('THREE.Clock')) return;
+      if (args[0].includes('THREE.WebGLProgram: Program Info Log')) return;
+    }
+    _warn.apply(console, args);
+  };
+}
 
 function Loader() {
   return (
@@ -34,7 +50,7 @@ export function CanvasWrapper() {
   return (
     <div ref={containerRef} id="canvas-container" className="canvas-container touch-pan-y">
       <Canvas
-        shadows
+        shadows={{ type: THREE.PCFShadowMap }}
         dpr={[1, 2]}
         frameloop={inView ? 'always' : 'demand'}
         camera={{

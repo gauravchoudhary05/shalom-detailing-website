@@ -31,20 +31,25 @@ const SERVICES: { id: ServiceType; title: string; desc: string; icon: string }[]
 
 export function ServiceSelector() {
   const activeService = useConfigStore((s) => s.activeService);
-  const setActiveService = useConfigStore((s) => s.setActiveService);
+  const requestServiceChange = useConfigStore((s) => s.requestServiceChange);
+  const servicePhase = useConfigStore((s) => s.serviceTransitionPhase);
+  const pendingService = useConfigStore((s) => s.pendingService);
+  const isAnimating = servicePhase !== 'idle';
 
   return (
     <div className="absolute bottom-[108px] md:bottom-10 left-0 md:left-8 w-full md:w-auto z-50 flex flex-col md:overflow-visible pointer-events-auto">
       <h2 className="service-selector__title hidden md:block">Surface Finish</h2>
       <div className="flex flex-row overflow-x-auto px-6 gap-3 snap-x hide-scrollbar md:flex-col md:px-0 w-full md:w-max md:overflow-visible pointer-events-auto">
         {SERVICES.map((service) => {
-          const isActive = activeService === service.id;
+          // Show as active if it's the current service OR the pending one being transitioned to
+          const isActive = activeService === service.id || pendingService === service.id;
           return (
             <button
               key={service.id}
               id={`service-btn-${service.id}`}
-              onClick={() => setActiveService(service.id)}
-              className={`service-selector__btn whitespace-nowrap flex-shrink-0 snap-center md:whitespace-normal md:w-full max-md:!justify-start${isActive ? ' service-selector__btn--active' : ''}`}
+              onClick={() => requestServiceChange(service.id)}
+              disabled={isAnimating}
+              className={`service-selector__btn whitespace-nowrap flex-shrink-0 snap-center md:whitespace-normal md:w-full max-md:!justify-start${isActive ? ' service-selector__btn--active' : ''}${isAnimating ? ' opacity-60 cursor-wait' : ''}`}
             >
               <span
                 className="service-selector__btn-indicator"

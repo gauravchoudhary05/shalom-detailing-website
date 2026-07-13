@@ -1,12 +1,12 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { Environment, ContactShadows, Stars, OrbitControls } from '@react-three/drei';
 import { easing } from 'maath';
 import * as THREE from 'three';
 import { useConfigStore } from '@/store/useConfigStore';
-import { CarModel } from './CarModel';
+import { CarModel, carRotationY } from './CarModel';
 
 function CameraRig({ inView }: { inView: boolean }) {
   const cameraTarget = useConfigStore((s) => s.cameraTarget);
@@ -106,23 +106,93 @@ export function Scene({ inView }: SceneProps) {
     };
   }, []);
 
+  // Service transition animation
+  const servicePhase = useConfigStore((s) => s.serviceTransitionPhase);
+  const commitServiceChange = useConfigStore((s) => s.commitServiceChange);
+  const finishServiceTransition = useConfigStore((s) => s.finishServiceTransition);
+
+  // Fly-out animation state
+  const flyDirRef = useRef(new THREE.Vector3(0, 0, 1));
+  const flyOutStartRef = useRef(new THREE.Vector3());
+  const flyOutTargetRef = useRef(new THREE.Vector3());
+  const prevPhaseRef = useRef('idle');
+
+  // Frustum for off-screen detection
+  const frustum = useMemo(() => new THREE.Frustum(), []);
+  const projScreenMatrix = useMemo(() => new THREE.Matrix4(), []);
+
+  // Distance to travel off-screen
+  // Increased significantly so it disappears into the horizon when driving away in Rear View
+  const FLY_OUT_DISTANCE = 150;
+  const FALLBACK_HIDDEN_DISTANCE = 120;
+
   useFrame((state, delta) => {
     if (!inView || !carGroupRef.current) return;
-    
-    // Determine how far down the user has scrolled relative to viewport height
+
+    const pos = carGroupRef.current.position;
+
+    // Capture the exact position and direction the moment fly-out begins
+    if (servicePhase === 'fly-out' && prevPhaseRef.current !== 'fly-out') {
+      const rotY = carRotationY.current;
+      // The car model natively faces +X (right), not +Z (front)
+      // Rotating the vector (1, 0, 0) around the Y axis by rotY yields:
+      const dirX = Math.cos(rotY);
+      const dirZ = -Math.sin(rotY);
+      flyDirRef.current.set(dirX, 0, dirZ).normalize();
+
+      flyOutStartRef.current.copy(pos);
+      // Target is relative to wherever the car currently is
+      flyOutTargetRef.current.set(
+        pos.x + dirX * FLY_OUT_DISTANCE,
+        pos.y,
+        pos.z + dirZ * FLY_OUT_DISTANCE
+      );
+    }
+    prevPhaseRef.current = servicePhase;
+
+    // Scroll-based targets (used in 'idle' and 'fly-in' phases)
     const scrollRatio = thresholdRef.current > 0 ? Math.max(0, scrollYRef.current / thresholdRef.current) : 0;
-    
-    // When scrollRatio == 0, targetZ is 0 (normal view)
-    // When scrollRatio reaches 1 (100vh), targetZ blasts up to 15 (past the camera at Z=6)
-    const targetZ = Math.pow(scrollRatio, 2.5) * 15;
-    
-    // Dip slightly downward as it approaches the camera for dramatic framing (adjusted for mobile start pos)
+    const scrollTargetZ = Math.pow(scrollRatio, 2.5) * 15;
     const baseTargetY = isMobile ? -0.5 : 0;
-    const targetY = baseTargetY - (scrollRatio * 1.5);
-    
-    // Smoothly spring position
-    easing.damp(carGroupRef.current.position, 'z', targetZ, 0.4, delta);
-    easing.damp(carGroupRef.current.position, 'y', targetY, 0.4, delta);
+    const scrollTargetY = baseTargetY - (scrollRatio * 1.5);
+
+    if (servicePhase === 'fly-out') {
+      // ── Phase 1: Drive car exactly in its facing direction ──
+      easing.damp(pos, 'x', flyOutTargetRef.current.x, 0.25, delta);
+      easing.damp(pos, 'z', flyOutTargetRef.current.z, 0.25, delta);
+      easing.damp(pos, 'y', baseTargetY - 1.5, 0.4, delta);
+
+      // Check if car is completely off-screen (frustum culling)
+      projScreenMatrix.multiplyMatrices(state.camera.projectionMatrix, state.camera.matrixWorldInverse);
+      frustum.setFromProjectionMatrix(projScreenMatrix);
+      
+      // We check a point slightly behind the car's position so the whole body exits
+      const checkPoint = pos.clone().addScaledVector(flyDirRef.current, -2);
+      const isOffScreen = !frustum.containsPoint(checkPoint);
+      const traveledDist = pos.distanceTo(flyOutStartRef.current);
+
+      // Commit change if off-screen OR if it has traveled far enough as a fallback
+      if ((isOffScreen && traveledDist > 5) || traveledDist > FALLBACK_HIDDEN_DISTANCE) {
+        commitServiceChange();
+      }
+    } else if (servicePhase === 'fly-in') {
+      // ── Phase 2: Drive car back to its scroll-based position ──
+      easing.damp(pos, 'x', 0, 0.35, delta);
+      easing.damp(pos, 'z', scrollTargetZ, 0.35, delta);
+      easing.damp(pos, 'y', scrollTargetY, 0.35, delta);
+
+      // Once close to the target, transition is complete
+      const distFromTarget = Math.sqrt(
+        pos.x * pos.x + Math.pow(pos.z - scrollTargetZ, 2)
+      );
+      if (distFromTarget < 0.2) {
+        finishServiceTransition();
+      }
+    } else {
+      // ── Idle: Normal scroll-driven animation ──
+      easing.damp(pos, 'z', scrollTargetZ, 0.4, delta);
+      easing.damp(pos, 'y', scrollTargetY, 0.4, delta);
+    }
   });
 
   return (

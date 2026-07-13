@@ -42,6 +42,8 @@ export const SERVICE_LABELS: Record<ServiceType, { title: string; description: s
   ceramic: { title: 'Ceramic Coating', description: 'Hydrophobic nano-ceramic — "Wet look" glass finish' },
 };
 
+export type ServiceTransitionPhase = 'idle' | 'fly-out' | 'fly-in';
+
 interface ConfigState {
   activeService: ServiceType;
   vehicleSize: VehicleSize;
@@ -51,6 +53,10 @@ interface ConfigState {
   showContact: boolean;
   menuOpen: boolean;
 
+  // Service transition animation state
+  pendingService: ServiceType | null;
+  serviceTransitionPhase: ServiceTransitionPhase;
+
   setActiveService: (service: ServiceType) => void;
   setVehicleSize: (size: VehicleSize) => void;
   setCameraTarget: (target: CameraTarget) => void;
@@ -58,6 +64,11 @@ interface ConfigState {
   togglePricing: () => void;
   toggleContact: () => void;
   toggleMenu: () => void;
+
+  // Animated service switching
+  requestServiceChange: (service: ServiceType) => void;
+  commitServiceChange: () => void;
+  finishServiceTransition: () => void;
 }
 
 export const useConfigStore = create<ConfigState>((set) => ({
@@ -68,6 +79,8 @@ export const useConfigStore = create<ConfigState>((set) => ({
   showPricing: false,
   showContact: false,
   menuOpen: false,
+  pendingService: null,
+  serviceTransitionPhase: 'idle',
 
   setActiveService: (service) => set({ activeService: service }),
   setVehicleSize: (size) => set({ vehicleSize: size }),
@@ -76,4 +89,19 @@ export const useConfigStore = create<ConfigState>((set) => ({
   togglePricing: () => set((s) => ({ showPricing: !s.showPricing })),
   toggleContact: () => set((s) => ({ showContact: !s.showContact })),
   toggleMenu: () => set((s) => ({ menuOpen: !s.menuOpen })),
+
+  // Step 1: User clicks a service → car starts flying out
+  requestServiceChange: (service) => set((s) => {
+    // Ignore if same service or already transitioning
+    if (service === s.activeService || s.serviceTransitionPhase !== 'idle') return s;
+    return { pendingService: service, serviceTransitionPhase: 'fly-out' };
+  }),
+  // Step 2: Car is hidden → apply the material swap, start flying back
+  commitServiceChange: () => set((s) => ({
+    activeService: s.pendingService ?? s.activeService,
+    pendingService: null,
+    serviceTransitionPhase: 'fly-in',
+  })),
+  // Step 3: Car is back in view → done
+  finishServiceTransition: () => set({ serviceTransitionPhase: 'idle' }),
 }));

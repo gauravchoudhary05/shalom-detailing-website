@@ -252,10 +252,10 @@ export default function SoftAurora({
       gl.canvas.addEventListener('mouseleave', handleMouseLeave);
     }
 
-    let animationFrameId: number;
+    let animationFrameId = 0;
+    let isVisible = true;
 
     function update(time: number) {
-      animationFrameId = requestAnimationFrame(update);
       program.uniforms.uTime.value = time * 0.001;
 
       if (enableMouseInteraction) {
@@ -269,11 +269,43 @@ export default function SoftAurora({
       }
 
       renderer.render({ scene: mesh });
+
+      // Only schedule next frame if still visible
+      if (isVisible) {
+        animationFrameId = requestAnimationFrame(update);
+      } else {
+        animationFrameId = 0;
+      }
     }
-    animationFrameId = requestAnimationFrame(update);
+
+    function startLoop() {
+      if (!animationFrameId && isVisible) {
+        animationFrameId = requestAnimationFrame(update);
+      }
+    }
+
+    function stopLoop() {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = 0;
+      }
+    }
+
+    // Pause/resume rendering when component scrolls off-screen
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) startLoop(); else stopLoop();
+      },
+      { threshold: 0 }
+    );
+    observer.observe(container);
+
+    startLoop();
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
+      stopLoop();
+      observer.disconnect();
       window.removeEventListener('resize', resize);
       if (enableMouseInteraction) {
         gl.canvas.removeEventListener('mousemove', handleMouseMove as EventListener);
