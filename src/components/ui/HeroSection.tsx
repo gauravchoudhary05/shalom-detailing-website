@@ -1,6 +1,7 @@
 'use client';
 
 import SoftAurora from './SoftAurora';
+import Link from 'next/link';
 import { useConfigStore } from '@/store/useConfigStore';
 
 export function HeroSection() {
@@ -88,8 +89,8 @@ export function HeroSection() {
                     </button>
 
                     {/* Secondary CTA — Ghost, Cyan Border, Play Icon, Pill */}
-                    <button
-                        onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })}
+                    <Link
+                        href="/testimonials"
                         style={{
                             background: 'rgba(0, 0, 0, 0.3)',
                             color: '#ffffff',
@@ -107,6 +108,7 @@ export function HeroSection() {
                             backdropFilter: 'blur(8px)',
                             WebkitBackdropFilter: 'blur(8px)',
                             transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                            textDecoration: 'none',
                         }}
                         onMouseEnter={(e) => {
                             e.currentTarget.style.borderColor = 'rgba(0, 229, 255, 0.85)';
@@ -123,7 +125,7 @@ export function HeroSection() {
                             <polygon points="5 3 19 12 5 21 5 3" />
                         </svg>
                         VIEW TESTIMONIALS
-                    </button>
+                    </Link>
 
                 </div>
             </div>

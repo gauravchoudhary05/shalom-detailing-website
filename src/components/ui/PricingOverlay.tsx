@@ -37,9 +37,9 @@ export function PricingOverlay() {
     <div className="pricing-overlay" id="pricing-overlay">
       <div className="pricing-overlay__backdrop" onClick={togglePricing} />
       <div className="pricing-overlay__panel">
-        {/* SoftAurora WebGL background — low amplitude to avoid GPU contention */}
+        {/* SoftAurora WebGL background — reduced for subtlety */}
         <div className="pricing-overlay__aurora-bg">
-          <SoftAurora />
+          <SoftAurora brightness={0.15} speed={0.6} noiseAmplitude={0.3} color1="#E50914" color2="#1A0000" />
         </div>
 
         <button
