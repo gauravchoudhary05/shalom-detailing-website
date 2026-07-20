@@ -208,7 +208,7 @@ export function Footer() {
                 {PRIMARY_SERVICES.map((item) => (
                   <li key={item}>
                     <Link
-                      href={`/services/${SERVICE_ROUTES[item] || '#'}`}
+                      href="/#services"
                       className="group flex items-center gap-3 py-[10px] px-3 -mx-3 rounded-lg hover:bg-white/[0.03] transition-all duration-300"
                       style={{ textDecoration: 'none' }}
                     >
