@@ -1,3 +1,10 @@
+/* ═══════════════════════════════════════════════════════════════
+   BorderGlow — Optimized CSS
+   • Shadows reduced from 12 → 3
+   • Gradients reduced from 7 → 2 per pseudo-element
+   • will-change only applied during hover / sweep animation
+   ═══════════════════════════════════════════════════════════════ */
+
 .border-glow-card {
   --edge-proximity: 0;
   --cursor-angle: 45deg;
@@ -15,13 +22,15 @@
   border: 1px solid rgb(255 255 255 / 15%);
   background: var(--card-bg, #0A0A0C);
   overflow: visible;
-  box-shadow:
-    rgba(0, 0, 0, 0.1) 0px 1px 2px,
-    rgba(0, 0, 0, 0.1) 0px 2px 4px,
-    rgba(0, 0, 0, 0.1) 0px 4px 8px,
-    rgba(0, 0, 0, 0.1) 0px 8px 16px,
-    rgba(0, 0, 0, 0.1) 0px 16px 32px,
-    rgba(0, 0, 0, 0.1) 0px 32px 64px;
+  /* Reduced: 6 stacked shadows → 1 subtle ambient shadow */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Hardware acceleration only when actively interacted with ── */
+.border-glow-card.is-hovered,
+.border-glow-card.sweep-active {
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0.01px);
 }
 
 .border-glow-card::before,
@@ -42,19 +51,14 @@
   transition: opacity 0.75s ease-in-out;
 }
 
-/* colored mesh-gradient border */
+/* ── Colored mesh-gradient border (2 radial gradients + base) ── */
 .border-glow-card::before {
   border: 1px solid transparent;
   background:
     linear-gradient(var(--card-bg, #0A0A0C) 0 100%) padding-box,
     linear-gradient(rgb(255 255 255 / 0%) 0% 100%) border-box,
-    var(--gradient-one, radial-gradient(at 80% 55%, #E50914 0px, transparent 50%)) border-box,
-    var(--gradient-two, radial-gradient(at 69% 34%, #ff3333 0px, transparent 50%)) border-box,
-    var(--gradient-three, radial-gradient(at 8% 6%, #990000 0px, transparent 50%)) border-box,
-    var(--gradient-four, radial-gradient(at 41% 38%, #E50914 0px, transparent 50%)) border-box,
-    var(--gradient-five, radial-gradient(at 86% 85%, #ff3333 0px, transparent 50%)) border-box,
-    var(--gradient-six, radial-gradient(at 82% 18%, #990000 0px, transparent 50%)) border-box,
-    var(--gradient-seven, radial-gradient(at 51% 4%, #ff3333 0px, transparent 50%)) border-box,
+    var(--gradient-primary) border-box,
+    var(--gradient-secondary) border-box,
     var(--gradient-base, linear-gradient(#E50914 0 100%)) border-box;
 
   opacity: calc((var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity)));
@@ -69,17 +73,12 @@
     );
 }
 
-/* colored mesh-gradient background fill near edges */
+/* ── Colored mesh-gradient background fill near edges ── */
 .border-glow-card::after {
   border: 1px solid transparent;
   background:
-    var(--gradient-one, radial-gradient(at 80% 55%, #E50914 0px, transparent 50%)) padding-box,
-    var(--gradient-two, radial-gradient(at 69% 34%, #ff3333 0px, transparent 50%)) padding-box,
-    var(--gradient-three, radial-gradient(at 8% 6%, #990000 0px, transparent 50%)) padding-box,
-    var(--gradient-four, radial-gradient(at 41% 38%, #E50914 0px, transparent 50%)) padding-box,
-    var(--gradient-five, radial-gradient(at 86% 85%, #ff3333 0px, transparent 50%)) padding-box,
-    var(--gradient-six, radial-gradient(at 82% 18%, #990000 0px, transparent 50%)) padding-box,
-    var(--gradient-seven, radial-gradient(at 51% 4%, #ff3333 0px, transparent 50%)) padding-box,
+    var(--gradient-primary) padding-box,
+    var(--gradient-secondary) padding-box,
     var(--gradient-base, linear-gradient(#E50914 0 100%)) padding-box;
 
   mask-image:
@@ -96,7 +95,7 @@
   mix-blend-mode: soft-light;
 }
 
-/* outer glow layer */
+/* ── Outer glow layer ── */
 .border-glow-card > .edge-light {
   inset: calc(var(--glow-padding) * -1);
   pointer-events: none;
@@ -108,9 +107,9 @@
     );
 
   opacity: calc((var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity)));
-  mix-blend-mode: plus-lighter;
 }
 
+/* ── Edge-light glow — reduced from 12 box-shadows to 3 ── */
 .border-glow-card > .edge-light::before {
   content: "";
   position: absolute;
@@ -118,18 +117,8 @@
   border-radius: inherit;
   box-shadow:
     inset 0 0 0 1px var(--glow-color, hsl(0deg 85% 45% / 100%)),
-    inset 0 0 1px 0 var(--glow-color-60, hsl(0deg 85% 45% / 60%)),
-    inset 0 0 3px 0 var(--glow-color-50, hsl(0deg 85% 45% / 50%)),
-    inset 0 0 6px 0 var(--glow-color-40, hsl(0deg 85% 45% / 40%)),
-    inset 0 0 15px 0 var(--glow-color-30, hsl(0deg 85% 45% / 30%)),
-    inset 0 0 25px 2px var(--glow-color-20, hsl(0deg 85% 45% / 20%)),
-    inset 0 0 50px 2px var(--glow-color-10, hsl(0deg 85% 45% / 10%)),
-    0 0 1px 0 var(--glow-color-60, hsl(0deg 85% 45% / 60%)),
-    0 0 3px 0 var(--glow-color-50, hsl(0deg 85% 45% / 50%)),
-    0 0 6px 0 var(--glow-color-40, hsl(0deg 85% 45% / 40%)),
-    0 0 15px 0 var(--glow-color-30, hsl(0deg 85% 45% / 30%)),
-    0 0 25px 2px var(--glow-color-20, hsl(0deg 85% 45% / 20%)),
-    0 0 50px 2px var(--glow-color-10, hsl(0deg 85% 45% / 10%));
+    inset 0 0 8px 0 var(--glow-color-40, hsl(0deg 85% 45% / 40%)),
+    0 0 20px 2px var(--glow-color-25, hsl(0deg 85% 45% / 25%));
 }
 
 .border-glow-inner {

@@ -24,14 +24,14 @@ const SERVICES = [
     tag: 'Invisible Armor',
     title: 'PPF',
     description: 'Self-healing TPU technology engineered to defend your finish against stone chips, scratches, and UV degradation.',
-    features: ['10-Year Durability', 'Self-Healing Technology', 'High Gloss Finish'],
-    stat: '10Y',
+    features: ['5-Year Warranty', 'Self-Healing Technology', 'High Gloss Finish'],
+    stat: '5Y',
     statLabel: 'Warranty',
     premium: false,
     fullDetails: [
       "At Shalom Car & Bike Detailing Services, we offer the most advanced solution to protect your vehicle's paint — Paint Protection Film (PPF).",
       "This transparent, high-gloss film acts as a rugged and highly effective barrier that safeguards your vehicle from daily wear and tear like scratches, swirl marks, and stone chips.",
-      "Our Self-Healing Thermoplastic Polyurethane (TPU) PPF is designed to prevent deep gashes. We offer flexible warranty plans spanning 5, 7, 8, and 10 years to suit your needs."
+      "Our Self-Healing Thermoplastic Polyurethane (TPU) PPF is designed to prevent deep gashes. We offer a 5-year warranty to ensure long-lasting peace of mind."
     ],
     price: 'Starting at ₹65,000/-'
   },
@@ -288,7 +288,7 @@ export function ServicesSection() {
               <Link
                 key={service.id}
                 href={`/services/${SERVICE_ROUTES[service.id] || service.id}`}
-                className="service-card-wrapper w-full md:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] flex flex-col z-10 hover:z-30 will-change-transform hover:scale-[1.02] transition-transform duration-300 cursor-pointer block"
+                className="service-card-wrapper w-full md:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] flex flex-col z-10 hover:z-30 hover:will-change-transform hover:scale-[1.02] transition-transform duration-300 cursor-pointer block"
                 style={{ animationDelay: `${index * 0.1}s`, textDecoration: 'none', color: 'inherit' }}
               >
               <BorderGlow

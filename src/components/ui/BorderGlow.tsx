@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useCallback, useEffect, type ReactNode, type CSSProperties } from 'react';
+import { useRef, useCallback, useEffect, useState, type ReactNode, type CSSProperties } from 'react';
 import './BorderGlow.css';
 
 function parseHSL(hslStr: string) {
@@ -12,27 +12,27 @@ function parseHSL(hslStr: string) {
 function buildGlowVars(glowColor: string, intensity: number): Record<string, string> {
   const { h, s, l } = parseHSL(glowColor);
   const base = `${h}deg ${s}% ${l}%`;
-  const opacities = [100, 60, 50, 40, 30, 20, 10];
-  const keys = ['', '-60', '-50', '-40', '-30', '-20', '-10'];
-  const vars: Record<string, string> = {};
-  for (let i = 0; i < opacities.length; i++) {
-    vars[`--glow-color${keys[i]}`] = `hsl(${base} / ${Math.min(opacities[i] * intensity, 100)}%)`;
-  }
-  return vars;
+  // Reduced to the 3 opacity tiers actually used by the optimized box-shadows
+  return {
+    '--glow-color': `hsl(${base} / ${Math.min(100 * intensity, 100)}%)`,
+    '--glow-color-40': `hsl(${base} / ${Math.min(40 * intensity, 100)}%)`,
+    '--glow-color-25': `hsl(${base} / ${Math.min(25 * intensity, 100)}%)`,
+  };
 }
 
-const GRADIENT_POSITIONS = ['80% 55%', '69% 34%', '8% 6%', '41% 38%', '86% 85%', '82% 18%', '51% 4%'];
-const GRADIENT_KEYS = ['--gradient-one', '--gradient-two', '--gradient-three', '--gradient-four', '--gradient-five', '--gradient-six', '--gradient-seven'];
-const COLOR_MAP = [0, 1, 2, 0, 1, 2, 1];
-
+/**
+ * Consolidated from 7 radial gradients down to 2 + a linear base.
+ * Primary gradient covers the dominant hue; secondary adds offset color variation.
+ */
 function buildGradientVars(colors: string[]): Record<string, string> {
-  const vars: Record<string, string> = {};
-  for (let i = 0; i < 7; i++) {
-    const c = colors[Math.min(COLOR_MAP[i], colors.length - 1)];
-    vars[GRADIENT_KEYS[i]] = `radial-gradient(at ${GRADIENT_POSITIONS[i]}, ${c} 0px, transparent 50%)`;
-  }
-  vars['--gradient-base'] = `linear-gradient(${colors[0]} 0 100%)`;
-  return vars;
+  const primary = colors[0];
+  const secondary = colors[Math.min(1, colors.length - 1)];
+
+  return {
+    '--gradient-primary': `radial-gradient(at 70% 45%, ${primary} 0px, transparent 55%)`,
+    '--gradient-secondary': `radial-gradient(at 30% 70%, ${secondary} 0px, transparent 55%)`,
+    '--gradient-base': `linear-gradient(${primary} 0 100%)`,
+  };
 }
 
 function easeOutCubic(x: number) { return 1 - Math.pow(1 - x, 3); }
@@ -98,6 +98,7 @@ export default function BorderGlow({
   fillOpacity = 0.5,
 }: BorderGlowProps) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   const getCenterOfElement = useCallback((el: HTMLDivElement) => {
     const { width, height } = el.getBoundingClientRect();
@@ -126,9 +127,16 @@ export default function BorderGlow({
     return degrees;
   }, [getCenterOfElement]);
 
+  /* ── Localized hover handlers ── */
+
+  const handlePointerEnter = useCallback(() => {
+    setIsHovered(true);
+  }, []);
+
   const handlePointerMove = useCallback((e: React.PointerEvent) => {
     const card = cardRef.current;
-    if (!card) return;
+    // Only compute when actively hovered — skips work on all non-hovered cards
+    if (!card || !isHovered) return;
 
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -139,7 +147,18 @@ export default function BorderGlow({
 
     card.style.setProperty('--edge-proximity', `${(edge * 100).toFixed(3)}`);
     card.style.setProperty('--cursor-angle', `${angle.toFixed(3)}deg`);
-  }, [getEdgeProximity, getCursorAngle]);
+  }, [isHovered, getEdgeProximity, getCursorAngle]);
+
+  const handlePointerLeave = useCallback(() => {
+    setIsHovered(false);
+    const card = cardRef.current;
+    if (card) {
+      // Reset to 0 so the CSS opacity calc fades the glow out smoothly
+      card.style.setProperty('--edge-proximity', '0');
+    }
+  }, []);
+
+  /* ── Animated sweep (used by Navbar / PricingOverlay) ── */
 
   useEffect(() => {
     if (!animated || !cardRef.current) return;
@@ -168,8 +187,10 @@ export default function BorderGlow({
   return (
     <div
       ref={cardRef}
+      onPointerEnter={handlePointerEnter}
       onPointerMove={handlePointerMove}
-      className={`border-glow-card ${className}`}
+      onPointerLeave={handlePointerLeave}
+      className={`border-glow-card ${isHovered ? 'is-hovered' : ''} ${className}`}
       style={{
         '--card-bg': backgroundColor,
         '--edge-sensitivity': edgeSensitivity,
